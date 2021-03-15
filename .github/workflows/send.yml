@@ -45,4 +45,5 @@ jobs:
       env:
         BARK: ${{ secrets.BARK }}
       run: |
+        echo "$BARK"
         curl https://api.day.app/"$BARK"/Github通知/N1固件编译完成
