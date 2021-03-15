@@ -32,6 +32,7 @@ env:
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
+  BARK: ${{ secrets.BARK }}
 
 jobs:
   build:
@@ -42,8 +43,6 @@ jobs:
       uses: actions/checkout@main
 
     - name: Send
-      env:
-        BARK: ${{ secrets.BARK }}
       run: |
         echo "$BARK"
         curl https://api.day.app/"$BARK"/Github通知/N1固件编译完成
