@@ -41,9 +41,21 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
-    - name: Send
+    - name: Compile the firmware
+      id: compile
+      run: |
+        echo "::set-output name=status::success"
+
+    - name: Send Success
       env:
         BARK: ${{ secrets.BARK }}
+      if: steps.compile.outputs.status == 'success'
       run: |
-        echo "$BARK"
         curl https://api.day.app/"$BARK"/Github通知/N1固件编译完成
+      
+    - name: Send flase
+      env:
+        BARK: ${{ secrets.BARK }}
+      if: steps.compile.outputs.status != 'success'
+      run: |
+        curl https://api.day.app/"$BARK"/Github通知/N1固件编译失败
