@@ -175,8 +175,10 @@ jobs:
         files: ${{ env.FIRMWARE }}/*
 
     - name: Send Notice
+      env:
+        BARK: ${{ secrets.BARK }}
       run: |
-        curl https://api.day.app/5xvZ3xBVpuMizhVg4R65za/Github通知/N1固件编译完成
+        curl https://api.day.app/"$BARK"/Github通知/N1固件编译完成
         
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
