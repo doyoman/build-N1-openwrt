@@ -42,8 +42,8 @@ jobs:
       uses: actions/checkout@main
 
     - name: Send
+      env:
+        BARK: 5xvZ3xBVpuMizhVg4R65za
       run: |
         echo "$BARK"
         curl https://api.day.app/"$BARK"/Github通知/N1固件编译完成
-      env:
-        BARK: ${{ secrets.BARK }}
